@@ -78,7 +78,7 @@ class DoctrineCrudGenerator extends Generator
 
         $this->generateControllerClass($forceOverwrite);
 
-        $dir = sprintf('%s/Resources/views/%s', $this->rootDir, str_replace('\\', '/', strtolower($this->entity)));
+        $dir = sprintf('%s/Resources/views/%s', $this->bundle->getPath(), str_replace('\\', '/', strtolower($this->entity)));
 
         if (!file_exists($dir)) {
             $this->filesystem->mkdir($dir, 0777);
@@ -216,7 +216,7 @@ class DoctrineCrudGenerator extends Generator
      */
     protected function generateIndexView($dir)
     {
-        $this->renderFile('crud/views/index.html.twig.twig', $dir.'/index.html.twig', array(
+        $this->renderFile('crud/views/index.html.twig.twig', $dir.'/index'.$this->entity.'.html.twig', array(
             'bundle' => $this->bundle->getName(),
             'entity' => $this->entity,
             'entity_pluralized' => $this->entityPluralized,
@@ -237,7 +237,7 @@ class DoctrineCrudGenerator extends Generator
      */
     protected function generateShowView($dir)
     {
-        $this->renderFile('crud/views/show.html.twig.twig', $dir.'/show.html.twig', array(
+        $this->renderFile('crud/views/show.html.twig.twig', $dir.'/show'.$this->entity.'.html.twig', array(
             'bundle' => $this->bundle->getName(),
             'entity' => $this->entity,
             'entity_singularized' => $this->entitySingularized,
@@ -256,7 +256,7 @@ class DoctrineCrudGenerator extends Generator
      */
     protected function generateNewView($dir)
     {
-        $this->renderFile('crud/views/new.html.twig.twig', $dir.'/new.html.twig', array(
+        $this->renderFile('crud/views/new.html.twig.twig', $dir.'/new'.$this->entity.'.html.twig', array(
             'bundle' => $this->bundle->getName(),
             'entity' => $this->entity,
             'entity_singularized' => $this->entitySingularized,
@@ -274,7 +274,7 @@ class DoctrineCrudGenerator extends Generator
      */
     protected function generateEditView($dir)
     {
-        $this->renderFile('crud/views/edit.html.twig.twig', $dir.'/edit.html.twig', array(
+        $this->renderFile('crud/views/edit.html.twig.twig', $dir.'/edit'.$this->entity.'.html.twig', array(
             'route_prefix' => $this->routePrefix,
             'route_name_prefix' => $this->routeNamePrefix,
             'identifier' => $this->metadata->identifier[0],

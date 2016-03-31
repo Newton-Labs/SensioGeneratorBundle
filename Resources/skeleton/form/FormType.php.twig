@@ -36,6 +36,10 @@ class {{ form_class }} extends AbstractType
 
             {%- endif -%}
         {%- endfor %}
+        ->add('submit', 'submit', [
+            'label' => 'Guardar',
+
+        ])
 
         ;
     }
